@@ -12,14 +12,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
-<<<<<<< HEAD
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "knex": "^0.20.15",
     "multer": "^1.4.2",
-=======
-    "knex": "^0.20.13",
->>>>>>> fe6270242e5916d315ed4b8535fae5d040c390d0
     "nodemon": "^2.0.2",
     "sqlite3": "^4.1.1"
   }
