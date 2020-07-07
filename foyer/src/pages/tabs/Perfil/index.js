@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function Perfil(){
      
+     const [ id_mora , setIdmora ] = useState('');
      const [ id_cond , setIdcond ] = useState('');
      const [ nomecond , setNomecond ] = useState('');
      const [ nome , setNome ] = useState('');
@@ -24,7 +25,7 @@ export default function Perfil(){
      const  navigation = useNavigation();
    
      async function carregarInfos(){
-       
+      const id_mora = await AsyncStorage.getItem('id_mora') 
       const id_cond = await AsyncStorage.getItem('id_cond')
       const nomecondasync = await AsyncStorage.getItem('nomecond')
       const nomeasync = await AsyncStorage.getItem('nome')
@@ -32,16 +33,18 @@ export default function Perfil(){
       const apartasync = await AsyncStorage.getItem('apart')
       const imagemSind = await AsyncStorage.getItem('imgsind')
       const imagemMora = await AsyncStorage.getItem('imgmora')
+      setIdmora(id_mora)
       setIdcond(id_cond)
       setNomecond(nomecondasync)
       setNome(nomeasync)
       setBloco(blocoasync)
       setApart(apartasync)
       if(imagemMora === null){
-        setImagem(`http://192.168.101.46:3333/fotoperfil/${imagemSind}`)
+        setImagem(imagemSind)
       } else {
-        setImagem(`http://192.168.101.46:3333/fotoperfil/${imagemMora}`)
+        setImagem(imagemMora)
       }
+
       
     } 
 
@@ -56,6 +59,33 @@ export default function Perfil(){
     AsyncStorage.clear();
     navigation.navigate('Login')
   }
+  function Buttons(){
+    if(id_mora === null){
+      return(
+        <View>
+          <Button 
+            title="Usuários Pendentes"
+            type='outline' buttonStyle={style.buttons} 
+            titleStyle={style.textButtons}
+            onPress={() => navigation.navigate('Verificar Usuario')}/>
+          <Button title="Eventos Solicitados" 
+          type='outline' 
+          buttonStyle={style.buttons} 
+          titleStyle={style.textButtons}/>
+        </View>
+      )
+    } else {
+      return(
+        <View>
+          
+          <Button title="Meus Eventos" 
+          type='outline' 
+          buttonStyle={style.buttons} 
+          titleStyle={style.textButtons}/>
+        </View>
+      )
+    }
+  }
   
 
 
@@ -69,10 +99,10 @@ export default function Perfil(){
         <Avatar containerStyle={style.avatar}
         avatarStyle={style.iconAvatar} 
         rounded icon={{ name: 'person' }}
-        source={{uri: imagem}}
+        source={{uri: `http://192.168.101.46:3333/fotoperfil/${imagem}`}}
         size="large"
       />
-        <Text style={style.title}>Nome</Text>
+        <Text style={style.title} onPress={() => Buttons()}>Nome</Text>
         <Text style={style.infos}>{nome}</Text>
         <Text style={style.title}>Condominio</Text>
         <Text style={style.infos}>{nomecond}</Text>
@@ -88,12 +118,13 @@ export default function Perfil(){
         </View> 
       </View>
       <Button title="Editar Informações Pessoais" type='outline' buttonStyle={style.buttons} titleStyle={style.textButtons} onPress={() => navigation.navigate('Editar Perfil')}/>
-      <Button title="Usuários Pendentes" type='outline' buttonStyle={style.buttons} titleStyle={style.textButtons}/>
-      <Button title="Meus Eventos" type='outline' buttonStyle={style.buttons} titleStyle={style.textButtons}/>
+      <Buttons />
       <Button title="Sobre nós" type='outline' buttonStyle={style.buttons} titleStyle={style.textButtons} onPress={() => navigation.navigate('Sobre')}/>
+
       <TouchableOpacity style={glb.button} onPress={() => Sair()}>
         <Text style={glb.textButton}>Sair</Text>
       </TouchableOpacity>
+
     </View>
     </ScrollView>
   );

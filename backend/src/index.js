@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors')
 const routes = require('./routes')
-<<<<<<< HEAD
 const fs = require('fs')
 const crypto = require('crypto')
 const connection = require('./database/connection')
@@ -73,18 +72,6 @@ app.post('/noticia', async (req , res) => {
 })
 console.log(titulo, desc, id_cond)
 });
-
-
 //Porta do Servidor
-=======
-
-const app = express();
-
-app.use(cors());
-
-app.use(express.json());
-app.use(routes);
->>>>>>> fe6270242e5916d315ed4b8535fae5d040c390d0
-
 app.listen(3333);
 

@@ -15,6 +15,7 @@ const style = StyleSheet.create({
     input:{
         borderBottomWidth:2,
         borderBottomEndRadius:8,
+        borderBottomStartRadius:8,
         borderBottomColor:'#4db8fe',
         width:widthInput,
         alignItems:'center',

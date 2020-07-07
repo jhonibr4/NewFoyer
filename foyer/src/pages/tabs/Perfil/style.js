@@ -1,7 +1,7 @@
 import { StyleSheet , Dimensions } from 'react-native';
 
 const widthBox = Dimensions.get('window').width;
-const heightBox = Dimensions.get('window').height/2+15;
+const heightBox = Dimensions.get('window').height/2-30;
 const widthLine = Dimensions.get('window').width-100;
 
 const style = StyleSheet.create({

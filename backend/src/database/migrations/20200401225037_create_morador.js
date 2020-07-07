@@ -2,7 +2,6 @@
 exports.up = function(knex) {
   return knex.schema.createTable('morador', function(table){
       table.string('id_mora').primary();
-<<<<<<< HEAD
       table.string('nomemora').notNullable();
       table.string('emailmora').notNullable().unique();
       table.string('senhamora').notNullable();
@@ -14,15 +13,7 @@ exports.up = function(knex) {
       table.string('imgmora')
 
       table.foreign('id_cond').references('id_conds').inTable('cond');
-=======
-      table.string('nome').notNullable();
-      table.string('email').notNullable();
-      table.string('senha').notNullable();
-      table.string('cpf').notNullable();
-      table.string('status').notNullable();
-      table.string('id_cond').notNullable();
 
->>>>>>> fe6270242e5916d315ed4b8535fae5d040c390d0
      
   })
 };

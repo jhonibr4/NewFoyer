@@ -26,7 +26,7 @@ export default function Login(){
         const dataMora = { emailmora , senhamora };
         try{
             const response =  await api.post('sessionmora', dataMora);
-            console.log(response.data)
+            console.log(response.data.status)
             await AsyncStorage.setItem('nomecond' , response.data.nomecond)
             await AsyncStorage.setItem('nome' , response.data.nomemora)
             await AsyncStorage.setItem('bloco' , response.data.blocomora)

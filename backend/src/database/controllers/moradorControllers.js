@@ -42,4 +42,26 @@ module.exports = {
         
        return response.json(data);
     },
+    async verificacao (request , response){
+        const id_cond = request.headers.authorization;
+        const { status } = request.body
+       
+        const verificar = await connection('morador')
+        .where({
+            'status':status,
+            'id_cond':id_cond
+        })
+        .select(
+        'id_mora',
+        'nomemora',
+        'emailmora',
+        'cpf',
+        'apartmora',
+        'blocomora',
+        'status',
+        'imgmora'
+        )
+
+        return response.json(verificar)
+    }
     };

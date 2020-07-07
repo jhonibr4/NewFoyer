@@ -91,7 +91,7 @@ export default function CadSind(){
                     <Text style={style.text}>Nº</Text>
                     <TextInput keyboardType='decimal-pad' style={style.inputLine} onChangeText={(text)=> setNum(text)}/>
                 </View>
-                </View>
+            </View>
             <View style={style.line}>
                 <View>
                     <Text style={style.text}>Cidade</Text>
