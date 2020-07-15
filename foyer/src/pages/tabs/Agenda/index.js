@@ -39,7 +39,19 @@ LocaleConfig.defaultLocale = 'br';
           }}
         />
         </View>
-      <Button title="Exibir Evento" type='outline' buttonStyle={style.buttons} titleStyle={style.textButtons}/>
+      <View>
+        <Button 
+          title="Exibir Evento" 
+          type='outline' 
+          buttonStyle={style.buttons} 
+          titleStyle={style.textButtons}/>
+        <Button 
+          title="Eventos Solicitados" 
+          type='outline' 
+          buttonStyle={style.buttons} 
+          titleStyle={style.textButtons} 
+          onPress={() => navigation.navigate('Analisar Evento')}/>
+      </View>
       <TouchableOpacity style={glb.button} onPress={() => navigation.navigate('Solicitar Evento')}>
         <Text style={glb.textButton}>Solicitar Evento</Text>
       </TouchableOpacity>

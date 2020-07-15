@@ -7,7 +7,7 @@ module.exports = {
 
     const conds = await connection('cond')
      .select('nomecond')
-     .where('id_conds', id_conds)
+     .where('id_conds',id_conds)
      .first();
         return response.json(conds);
     },
@@ -15,7 +15,7 @@ module.exports = {
    const id_conds = request.headers.authorization;
 
     const conds = await connection('cond')
-    .where('id_conds', id_conds)
+    
      .select('*')
    
         return response.json(conds);

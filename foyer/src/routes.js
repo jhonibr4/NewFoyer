@@ -15,14 +15,16 @@ import newMessage from './pages/newMessage';
 import verificarUsuario from './pages/verificarUsuario';
 import pageInfos from './pages/pageInfos';
 import solicitarEvento from './pages/solicitarEvento';
+import analisarEvento from './pages/analisarEventos';
 
 const Stack = createStackNavigator();
 export default function Routes() {
     return(
         <NavigationContainer>
             <Stack.Navigator screenOptions={{ headerShown: false }} >
-                <Stack.Screen name="Solicitar Evento" component={solicitarEvento} />
                 <Stack.Screen name="Login" component={Login} />
+                <Stack.Screen name="Analisar Evento" component={analisarEvento} />
+                <Stack.Screen name="Solicitar Evento" component={solicitarEvento} />
                 <Stack.Screen name="Pagina Informacoes" component={pageInfos} />
                 <Stack.Screen name="Verificar Usuario" component={verificarUsuario} />
                 <Stack.Screen name="Nova Mensagem" component={newMessage} /> 

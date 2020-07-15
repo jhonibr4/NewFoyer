@@ -26,6 +26,7 @@ export default function Login(){
         const dataMora = { emailmora , senhamora };
         try{
             const response =  await api.post('sessionmora', dataMora);
+            if(response.data.status === 'Aprovado'){
             console.log(response.data.status)
             await AsyncStorage.setItem('nomecond' , response.data.nomecond)
             await AsyncStorage.setItem('nome' , response.data.nomemora)
@@ -38,7 +39,24 @@ export default function Login(){
             await AsyncStorage.setItem('imgmora' , response.data.imgmora)
             await AsyncStorage.setItem('descricao' , response.data.descricao)
             navigation.navigate('Tabs')
-            
+            }
+            else if(response.data.status === 'Rejeitado'){
+                Alert.alert(
+                    'Erro',
+                    'Seu cadastro no condomínio foi rejeitado, entre em contato com o sindico de seu condomínio para mais informações.',
+                    [{
+                        text:'Ok'
+                    }]
+                )
+            } else {
+                Alert.alert(
+                    'Erro',
+                    'Seu cadastro está em processo de análise pelo sindico do seu condominio.',
+                    [{
+                        text:'Ok'
+                    }]
+                )
+            }
         } catch(err){
                 MsgAviso();  
         }

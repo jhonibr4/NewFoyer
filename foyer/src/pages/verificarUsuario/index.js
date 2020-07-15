@@ -16,7 +16,7 @@ export default function verificarUsuario() {
     const [ id_mora , setIdmora ] = useState('');
     const [ id_conds , setIdcond ] = useState('');
     const [ users , setUsuarios ] = useState([]);
-    const [ status , setStatus ] = useState('Aprovado');
+    const [ status , setStatus ] = useState('Aguardando resposta');
     const navigation = useNavigation();
 
     async function loadUsuario(){

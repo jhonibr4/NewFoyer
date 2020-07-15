@@ -8,6 +8,7 @@ const session_moraControllers = require('./database/controllers/session_moraCont
 const noticiaControllers = require('./database/controllers/noticiaControllers');
 const msgControllers = require('./database/controllers/msgControllers');
 const verificaMoraControllers = require('./database/controllers/verificacaoMoraControllers');
+const eventoControllers = require('./database/controllers/eventoControllers');
 
 routes.post('/cond', condControllers.create);
 routes.post('/conds', condControllers.index);
@@ -32,5 +33,12 @@ routes.delete('/noticia', noticiaControllers.delete)
 
 routes.post('/sessioncond', session_condControllers.create_cond);
 routes.post('/sessionmora', session_moraControllers.create_mora)
+
+routes.post('/evento' , eventoControllers.create);
+routes.put('/evento' , eventoControllers.autorizacaoEvento);
+routes.get('/eventoMora' , eventoControllers.carregarEventoMora);
+routes.get('/eventoSind' , eventoControllers.carregarEventoSind);
+
+routes.post('/buscarMora' , moradorControllers.buscarMora);
 
 module.exports = routes

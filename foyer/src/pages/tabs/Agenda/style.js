@@ -27,7 +27,7 @@ const style = StyleSheet.create({
         borderColor:'#4db8fe',
         borderWidth:0,
         borderBottomWidth:1,
-        marginBottom:50,
+      
         
     },
     textButtons:{

@@ -6,49 +6,37 @@ import LottieView from 'lottie-react-native'
 import calendar from '../../animation/calendar.json';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import Icons from 'react-native-vector-icons/FontAwesome5'
+import TimePicker from 'react-native-simple-time-picker';
+import TextArea from 'react-native-textarea';
+import api from '../../services/api'
 
 import Headers from '../../components/Header';
 import glb from '../../components/global';
 import style from './style';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default function solicitarEvento() {
 
-  const [ date , setDate ] = useState(new Date(1598051730000));
-  const [ horarioInicio , setHorarioInicio ] = useState();
-  const [ horarioTermino , setHorarioTermino ] = useState();
-  const [ dateView , setDateView ] = useState();
+  const [ data , setData ] = useState('');
+  const [ dateView , setDateView ] = useState('Selecione um data no calendario');
+  const [ nomeLocal , setNomeLocal ] = useState('')
+  const [ descricao , setDescricao ] = useState('')
+  
 
+
+  const [ horaSelecionadaIni , setHoraSelecionadaIni ] = useState();
+  const [ minSelecionadoIni , setMinSelecionadoIni ] = useState();
+  const [ horaSelecionadaTer , setHoraSelecionadaTer ] = useState();
+  const [ minSelecionadoTer , setMinSelecionadoTer ] = useState();
+  const [ horaTer , setHoraTer ] = useState();
+  const [ horaIni , setHoraIni ] = useState();
+          
+          
   const [isTimeInicio, setTimeInicio] = useState(false);
   const [isTimeTermino, setTimeTermino] = useState(false);
 
-  const onChange = (event, selectedTime) => {
-    const currentDate = selectedTime || date;
-    setDate(currentDate);
-  };
-
-  function showTimeInicio(){
-    setTimeInicio(true);
-  };
-  function showTimeTermino(){
-    setTimeTermino(true);
-  };
   
-  function hideDatePicker(){
-    setTimeInicio(false);
-    setTimeTermino(false);
-  };
-
-  function handleConfirmI(){
-    console.log(date)
-    setHorarioInicio(horarioInicio)
-    hideDatePicker();
-  };
-  function handleConfirmT(){
-    console.log(date)
-    setHorarioInicio(horarioTermino)
-    hideDatePicker();
-  };
 LocaleConfig.locales['br'] = {
   monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
   monthNamesShort: ['Jan.','Fev.','Mar','Abr','Mai','Jun','Jul.','Ago','Set.','Out.','Nov','Dez'],
@@ -59,8 +47,29 @@ LocaleConfig.locales['br'] = {
 LocaleConfig.defaultLocale = 'br';
 
 function mostrarData( dia ){
-  setDate(dia.dateString)
+  setData(dia.dateString)
   setDateView(`${dia.day}/${dia.month}/${dia.year}`)
+  console.log(horaTer)
+  console.log(horaIni)
+  console.log(data)
+
+}
+
+async function solicitarEvento(){
+  try{
+    
+    const id_morador = await AsyncStorage.getItem('id_mora');
+    const id_condEvento = await AsyncStorage.getItem('id_cond')
+    const evento = { data , nomeLocal  ,  horaIni , horaTer , descricao , id_condEvento , id_morador};
+    const solicitacao = await api.post('evento', evento ,{
+      headers:{
+        authorization:id_morador
+      }
+    })
+    console.log(solicitacao)
+  } catch (err){
+    console.log(err)
+  }
 }
 
 
@@ -92,70 +101,47 @@ function mostrarData( dia ){
         </View>
         <View style={style.viewInput}>
         <Text style={style.text}>Data do evento</Text>
-        <TextInput
-          placeholder="Selecione uma data no calendário"
-          style={style.input}
-          value={dateView}
-          disabled
-        />
+        <View style={style.inputDate}>
+          <Text style={style.textDate}>{dateView}</Text>
+        </View>
         
         <Text style={style.text}>Nome do Local</Text>
         
         <TextInput
           style={style.input}
-          u
+          onChangeText={(text) => setNomeLocal(text)}
         />
-        <Text style={style.text}>Horário de Inicio</Text>
-        <TextInput
-          style={style.input}
-          onPress={() => showTimeInicio()} />
-        <View style={style.line}>
-                <View>
-                <Text style={style.text}>Horário de Inicio</Text>
-                <TextInput
-                    onChangeText={(text) => setConds(text)}
-                    style={style.inputLine}
-                />
-                </View>
-                
-                <TouchableOpacity style={style.buttonSearch} onPress={() => showTimeInicio()}>
-                    <Icons name="door-open" size={30} color="white"/>
-                </TouchableOpacity>
-            </View>
-        <View style={style.line}>
-                <View>
-                <Text style={style.text}>Horário de Termino</Text>
-                <TextInput
-                    onChangeText={(text) => setConds(text)}
-                    style={style.inputLine}
-                />
-                </View>
-                
-                <TouchableOpacity style={style.buttonSearch} onPress={() => showTimeTermino()}>
-                    <Icons name="door-closed" size={30} color="white"/>
-                </TouchableOpacity>
-            </View>
+        <Text style={style.text}>Descrição do Evento</Text>
+        <View style={style.textareaContainer}>
+          <TextArea
+            containerStyle={style.viewTextarea}
+            style={style.textArea}
+            onChangeText={(text) => setDescricao(text)}
+            value={descricao}
+          />
         </View>
-       
+           
+          <Text style={style.text}>Horário de Inicio</Text>
+          <TimePicker
+          selectedHours={horaSelecionadaIni}
+          selectedMinutes={minSelecionadoIni}
+          onChange={(hours, minutes) => setHoraIni(`${hours}:${minutes}`)}
+        />
+          <Text style={style.text}>Horário de Termino</Text>
+          <TimePicker
+          selectedHours={horaSelecionadaTer}
+          selectedMinutes={minSelecionadoTer}
+          onChange={(hours, minutes) => setHoraTer(`${hours}:${minutes}`)}
+        />
+        <TouchableOpacity
+          style={style.buttonEdit}
+          onPress={() => solicitarEvento()}
+        >
 
-      
-      <DateTimePickerModal
-        isVisible={isTimeTermino}
-        mode="time"
-        onConfirm={handleConfirmI}
-        onCancel={hideDatePicker}
-        onChange={onChange}
-        display="clock"
-      />
-      <DateTimePickerModal
-        isVisible={isTimeInicio}
-        mode="time"
-        onConfirm={handleConfirmT}
-        onCancel={hideDatePicker}
-        onChange={onChange}
-        display="clock"
-        onChange={(date) => setHorarioTermino(date)}
-      />
+          <Text  style={style.textButton}>Solicitar</Text>
+        </TouchableOpacity>
+        </View>
+  
    </ScrollView>
     </View>
     

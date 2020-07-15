@@ -8,7 +8,7 @@ module.exports = {
         const view = await connection('morador')
         .where('id_cond', id_cond)
         .select('*');
-        response.json( view );
+        return response.json( view );
     },
 
     async create (request, response) {
@@ -42,26 +42,14 @@ module.exports = {
         
        return response.json(data);
     },
-    async verificacao (request , response){
-        const id_cond = request.headers.authorization;
-        const { status } = request.body
+    async buscarMora (request , response){
+        const { id_mora } = request.body
+      
+        const infoMora = await connection('morador')
+        .where('id_mora',id_mora)
+        .select('*')
+        .first()
+       return console.log(infoMora)
        
-        const verificar = await connection('morador')
-        .where({
-            'status':status,
-            'id_cond':id_cond
-        })
-        .select(
-        'id_mora',
-        'nomemora',
-        'emailmora',
-        'cpf',
-        'apartmora',
-        'blocomora',
-        'status',
-        'imgmora'
-        )
-
-        return response.json(verificar)
     }
     };

@@ -68,10 +68,7 @@ export default function Perfil(){
             type='outline' buttonStyle={style.buttons} 
             titleStyle={style.textButtons}
             onPress={() => navigation.navigate('Verificar Usuario')}/>
-          <Button title="Eventos Solicitados" 
-          type='outline' 
-          buttonStyle={style.buttons} 
-          titleStyle={style.textButtons}/>
+          
         </View>
       )
     } else {

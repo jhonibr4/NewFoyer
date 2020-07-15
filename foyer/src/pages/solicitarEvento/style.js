@@ -13,6 +13,20 @@ const style = StyleSheet.create({
         fontSize:20,
         marginVertical:5
     },
+    textData:{
+        borderBottomWidth:2,
+        borderBottomEndRadius:8,
+        borderBottomStartRadius:8,
+        borderBottomColor:'#4db8fe',
+        width:widthInput,
+        alignItems:'center',
+        justifyContent:'center',
+        textAlign:'center',
+        marginTop:3,
+        height:50
+        
+      
+    },
     input:{
         borderBottomWidth:2,
         borderBottomEndRadius:8,
@@ -22,6 +36,7 @@ const style = StyleSheet.create({
         alignItems:'center',
         textAlign:'center',
         marginTop:3,
+        
       
     },
     containerInput:{
@@ -33,6 +48,22 @@ const style = StyleSheet.create({
         color:'#a6a6a6',
         fontFamily:'Manrope-SemiBold'
     },
+  
+    inputDate:{
+        height:50,
+        borderBottomWidth:2,
+        borderBottomEndRadius:8,
+        borderBottomStartRadius:8,
+        borderBottomColor:'#4db8fe',
+        width:widthInput,
+        alignItems:'center',
+        justifyContent:'center',
+        textAlign:'center',
+        marginTop:3,
+    },
+    textDate:{
+        fontFamily:'Manrope-Light'
+    },  
     calendar:{
         height:heightCalendar,
        
@@ -88,44 +119,45 @@ buttonSearch:{
 
     },
 
-    //Modal
+    buttonEdit:{
+        width:150,
+        height:50,
+        backgroundColor:'#4db8fe',
+        borderRadius:8,
+        alignItems:'center',
+        justifyContent:'center',
+        marginVertical:10
+    },
+    textButton:{
+        color:'#FFF',
+        fontFamily:'Manrope-Bold'
+    },
 
-    centeredView: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 22
-      },
-      modalView: {
-        margin: 20,
-        backgroundColor: "white",
-        borderRadius: 20,
-        padding: 35,
-        alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5
-      },
-      openButton: {
-        backgroundColor: "#F194FF",
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2
-      },
-      textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
-      },
-      modalText: {
-        marginBottom: 15,
-        textAlign: "center"
-      }
+    textareaContainer:{
+        marginTop:5, 
+        marginBottom:15,   
+        height:150,
+        width:widthView,
+        alignItems:'center'
+    }, 
+    viewTextarea:{
+        marginBottom:10,
+        borderRadius:8,
+        width:widthInput
+        
+       
+    },
+    textArea:{
+        marginBottom:15,
+        fontFamily:'Manrope-Medium',
+        flex:1,
+        width:widthInput,
+        borderWidth:2,
+        borderColor:'#4db8fe',
+        borderRadius:8,
+
+    },
+    
    
 });
 export default style;
