@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 const width = Dimensions.get('window').width;
-const heightEvento = Dimensions.get('window').height/2;
+const heightEvento = Dimensions.get('window').height/3;
 
 const style = StyleSheet.create({
     textTitle:{
@@ -26,28 +26,23 @@ const style = StyleSheet.create({
         elevation: 1,
         marginBottom:15
     },
-    nomeUser:{
-        fontFamily:'Manrope-Bold',
-        marginVertical:10,
-        
-    },
     textEvento:{
-        marginTop:10,
+        marginVertical:5,
         fontFamily:'Manrope-Bold',
         fontSize:15,
     },
     titleEvento:{
         fontFamily:'Manrope-Light',
         fontSize:15,
-        marginBottom:10
+        
     },
     viewdescricao:{
-        height:heightEvento/2-70,
+        height:heightEvento/2-30,
         width:width-40, 
         
     },
     textDescricao:{
-        textAlign:'justify',
+        textAlign:'center',
         color:'#a6a6a6'
     },
     

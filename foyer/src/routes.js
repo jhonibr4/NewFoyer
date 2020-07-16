@@ -15,7 +15,8 @@ import newMessage from './pages/newMessage';
 import verificarUsuario from './pages/verificarUsuario';
 import pageInfos from './pages/pageInfos';
 import solicitarEvento from './pages/solicitarEvento';
-import analisarEvento from './pages/analisarEventos';
+import verEvento from './pages/eventos';
+import analisarEvento from './pages/analisarEvento';
 
 const Stack = createStackNavigator();
 export default function Routes() {
@@ -24,6 +25,7 @@ export default function Routes() {
             <Stack.Navigator screenOptions={{ headerShown: false }} >
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Analisar Evento" component={analisarEvento} />
+                <Stack.Screen name="Ver Eventos" component={verEvento} />
                 <Stack.Screen name="Solicitar Evento" component={solicitarEvento} />
                 <Stack.Screen name="Pagina Informacoes" component={pageInfos} />
                 <Stack.Screen name="Verificar Usuario" component={verificarUsuario} />

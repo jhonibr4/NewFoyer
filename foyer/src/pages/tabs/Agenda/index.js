@@ -50,7 +50,7 @@ LocaleConfig.defaultLocale = 'br';
           type='outline' 
           buttonStyle={style.buttons} 
           titleStyle={style.textButtons} 
-          onPress={() => navigation.navigate('Analisar Evento')}/>
+          onPress={() => navigation.navigate('Ver Eventos')}/>
       </View>
       <TouchableOpacity style={glb.button} onPress={() => navigation.navigate('Solicitar Evento')}>
         <Text style={glb.textButton}>Solicitar Evento</Text>
