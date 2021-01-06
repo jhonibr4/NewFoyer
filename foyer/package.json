@@ -17,7 +17,7 @@
     "@react-navigation/bottom-tabs": "^5.4.7",
     "@react-navigation/native": "^5.5.0",
     "@react-navigation/stack": "^5.2.10",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "crypto": "^1.0.1",
     "expo-font": "^8.1.1",
     "lottie-ios": "3.0.3",
